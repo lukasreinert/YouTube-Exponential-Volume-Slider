@@ -6,6 +6,7 @@
 // @author       Lukas Reinert
 // @icon         https://www.youtube.com/img/favicon.ico
 // @match        https://www.youtube.com/*
+// @match        https://music.youtube.com/*
 // @run-at       document-start
 // @grant        none
 // ==/UserScript==
