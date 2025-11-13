@@ -8,6 +8,7 @@
 // @match        https://www.youtube.com/*
 // @match        https://music.youtube.com/*
 // @updateURL    https://raw.githubusercontent.com/lukasreinert/YouTube-Exponential-Volume-Slider/refs/heads/main/youtube_exponential_volume_slider.js
+// @license      MIT
 // @run-at       document-start
 // @grant        none
 // ==/UserScript==
