@@ -1,26 +1,26 @@
 // ==UserScript==
 // @name         YouTube Exponential Volume Slider
 // @namespace    https://www.tampermonkey.net/
-// @version      1.1.2
+// @version      1.1.3
 // @description  Makes the YouTube volume slider exponential so it's easier to select lower volumes.
 // @author       Lukas Reinert
 // @icon         https://www.youtube.com/img/favicon.ico
 // @match        https://www.youtube.com/*
 // @match        https://music.youtube.com/*
-// @updateURL    https://raw.githubusercontent.com/lukasreinert/YouTube-Exponential-Volume-Slider/refs/heads/main/youtube_exponential_volume_slider.js
 // @license      MIT
 // @run-at       document-start
 // @grant        none
+// @updateURL    https://raw.githubusercontent.com/lukasreinert/YouTube-Exponential-Volume-Slider/refs/heads/main/youtube_exponential_volume_slider.js
 // ==/UserScript==
-
+ 
 (function() {
     'use strict';
-
+ 
     const EXPONENT = 2.5;
-
+ 
     const storedOriginalVolumes = new WeakMap();
     const {get, set} = Object.getOwnPropertyDescriptor(HTMLMediaElement.prototype, 'volume');
-
+ 
     Object.defineProperty(HTMLMediaElement.prototype, 'volume', {
         get() {
             const lowVolume = get.call(this);
@@ -32,11 +32,11 @@
             const adjustedVolume = Math.pow(originalVolume, EXPONENT);
             storedOriginalVolumes.set(this, originalVolume);
             set.call(this, adjustedVolume);
-
+ 
             console.log(`YouTube Volume: ${Math.round(originalVolume*100)}% (adjusted to ${(adjustedVolume * 100).toFixed(3)}%)`);
         }
     });
-
+ 
     // Ensure any videos already on the page get their volume adjusted
     const videos = document.getElementsByTagName('video');
     for (const video of videos) {
@@ -45,5 +45,5 @@
             video.volume = orig; // triggers setter
         }
     }
-
+ 
 })();
